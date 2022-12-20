@@ -2,7 +2,7 @@ import requests
 from urllib.request import urlretrieve
 
 
-class Link:
+class VideoData:
     """Gère et transforme les liens"""
 
     def __init__(self, link: str) -> None:
@@ -37,15 +37,15 @@ class Link:
             dict: dictionnaire contenant les likes et dislikes (clefs : "likes" et "dislikes")
         """
         request_link = f"https://returnyoutubedislikeapi.com/votes?videoId={self.link}"
-        response = requests.get(request_link)
-
+        response = requests.get(url=request_link, timeout=30)
+        
         return response.json()
 
     def get_miniature(self) -> None:
         """Téléchargement de la miniature avec la meilleure qualité possible"""
-        urlretrieve(f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg', "file")
+        urlretrieve(f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg', "video.data")
 
 
 if __name__ == "__main__":
-    link = Link("https://www.youtube.com/watch?v=6ZfuNTqbHE8")
-    link.get_likes_and_dislikes()
+    data = VideoData("https://www.youtube.com/watch?v=6ZfuNTqbHE8")
+    data.get_likes_and_dislikes()

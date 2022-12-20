@@ -24,12 +24,10 @@ def convert() -> None:
 
     # Récupération de l'URL
     link = request.form["link"]
-    link = video_utils.Link(link=link)
+    data = video_utils.VideoData(link=link)
 
     # Rendu de la vue
-    """ TODO : ajuster les noms en fonction de la template
-    et traiter l'URL avec l'objet de pytube.py """
-    return render_template("index.html", video="oui")
+    return render_template("index.html", video=data)
 
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 
