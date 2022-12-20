@@ -1,0 +1,9 @@
+#download_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#download_form form {
+    width: 400px;
+}
