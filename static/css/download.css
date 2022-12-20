@@ -1,3 +1,16 @@
+:root {
+    --backgorund_color_dark: #2F2F2F;
+    --facteur_agrandissement_img: 12;
+}
+
+
+
+body {
+    background-color: var(--backgorund_color_dark);
+    color: white;
+}
+
+
 #download_form {
     display: flex;
     justify-content: center;
@@ -6,4 +19,18 @@
 
 #download_form form {
     width: 400px;
+}
+
+
+
+#convert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#convert img {
+    width: calc(16px*var(--facteur_agrandissement_img));
+    height: calc(9px*var(--facteur_agrandissement_img));
 }

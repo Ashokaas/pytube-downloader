@@ -37,7 +37,7 @@ class YTVideo:
             for stream in self.streams.filter(adaptive=True, mime_type="audio/mp4")
         }}
 
-    def download(self, destination_folder: str, video_quality: str, audio_quality: str, file_type="mp4"):
+    def download(self, destination_folder: str, video_quality: str, audio_quality: str, file_type="mp4") -> str:
         """
         Downloads the video
 
@@ -46,6 +46,9 @@ class YTVideo:
             video_quality (str): the quality of the video (ex: 1080p60 / 360p)
             audio_quality (str): the quality of the audio (ex: 128kbps / 160kbps)
             file_type (str): The format of the output, either webm or mp4
+
+        Returns:
+            The path to the final video.
 
         The list of the availabe qualities can be requested using the get_video/audio_qualities functions
         """
@@ -56,7 +59,7 @@ class YTVideo:
         self.audio = self.audio_qualities[file_type][audio_quality].download(destination_folder + "audio/")
         self.final = fuse_video_audio(self.video, self.audio,
                                 destination_folder + self.video_object.title.replace(" ", "_") + "_final." + file_type)
-
+        return self.final
 
     def get_video_qualities(self, file_type: str):
         """
