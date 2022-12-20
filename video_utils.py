@@ -1,21 +1,21 @@
+"""File managing links"""
 import requests
-from urllib.request import urlretrieve
 
 
 class VideoData:
-    """Gère et transforme les liens"""
+    """Getting and transforming link"""
 
     def __init__(self, link: str) -> None:
         self.link = self.reduce_link(link)
 
     def reduce_link(self, link: str) -> str:
-        """Réduit le lien de la vidéo
+        """Reducing video's link
 
         Args:
-            link (str): lien de la vidéo
+            link (str): video's link
 
-        Returns:
-            str: version raccourcie du lien
+        Return:
+            str: short link's version
         """
         prefixs_link_yt = ["https://youtu.be/", "https://youtube.com/watch?v=",
                            "https://www.youtu.be/", "https://www.youtube.com/watch?v=",
@@ -27,14 +27,14 @@ class VideoData:
         return link
 
     def get_link(self) -> str:
-        """Renvoie le lien de la vidéo"""
+        """Return video's link"""
         return self.link
 
     def get_likes_and_dislikes(self) -> dict:
-        """Récupère les likes et dislikes de la vidéo
+        """Getting video's likes and dislikes
 
         Returns:
-            dict: dictionnaire contenant les likes et dislikes (clefs : "likes" et "dislikes")
+            dict: dictionary containing likes and dislikes (keys : "likes", "dislikes")
         """
         request_link = f"https://returnyoutubedislikeapi.com/votes?videoId={self.link}"
         response = requests.get(url=request_link, timeout=30)
@@ -42,8 +42,8 @@ class VideoData:
         return response.json()
 
     def get_miniature(self) -> None:
-        """Téléchargement de la miniature avec la meilleure qualité possible"""
-        urlretrieve(f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg', "video.data")
+        """Miniature's download with maximum available resolution"""
+        return f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg'
 
 
 if __name__ == "__main__":

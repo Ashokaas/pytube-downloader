@@ -1,40 +1,46 @@
-"""Fichier principal de l'application pytube-downloader
-"""
+"""Main file of the pytube-downloader"""
 
-# Module principale permettant la communication entre le site web et le downloader
+# Main library that allows communication between the web site and the ytvideo downloader 
 from flask import Flask, render_template, request
 
-# Modules internes
+# Internal libraries
 import video_utils
 import ytvideo
 
 
-# Création des objets Flask et Bdd
+# Creating Flask's object
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
+# Useful features
 
-# Les routes associées aux fonctions
+# Associating routes to function
 @app.route("/")
-def accueillir() -> None:
-    """Gère l'accueil des utilisateurs"""
+def welcome() -> None:
+    """Welcome user"""
 
-    # Rendu de la vue
+    # Returning web site with keywards
     return render_template("index.html")
 
 @app.route("/convert")
 def convert() -> None:
-    """Récupère l'URL entrée par l'utilisateur et la télécharge"""
+    """Get URL from user then ask for parameters"""
 
-    # Récupération de l'URL
+    # Getting URL
     link = request.form["link"]
     data = video_utils.VideoData(link=link)
-    choice = {}
+    downloader = ytvideo.YTVideo(data.get_link)
 
-    # Rendu de la vue
-    return render_template("index.html", video=data)
+    # Getting audios and videos qualities
+    choice = {"audio": downloader.get_audio_qualities,
+    }
+    choice["audio"] = downloader.get_audio_qualities()
+    choice["video"] = downloader.get_video_qualities()
+
+    # Returning web site with keywards
+    return render_template("index.html", video=data, audio_choice=choice["audio"], video_choice=["video"])
 
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 
-# Lancement du serveur
+# Launching server
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=1664, threaded=True, debug=True)
