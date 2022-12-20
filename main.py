@@ -1,9 +1,12 @@
 """Fichier principal de l'application pytube-downloader
 """
 
-# Librairie(s) utilisée(s)
+# Module principale permettant la communication entre le site web et le downloader
 from flask import Flask, render_template, request
+
+# Modules internes
 import video_utils
+import ytvideo
 
 
 # Création des objets Flask et Bdd
@@ -25,6 +28,7 @@ def convert() -> None:
     # Récupération de l'URL
     link = request.form["link"]
     data = video_utils.VideoData(link=link)
+    choice = {}
 
     # Rendu de la vue
     return render_template("index.html", video=data)
