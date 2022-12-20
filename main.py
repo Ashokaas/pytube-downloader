@@ -17,6 +17,18 @@ def accueillir():
     # Rendu de la vue
     return render_template("index.html")
 
+@app.route("/download")
+def download():
+    """Récupère l'URL entrée par l'utilisateur et la télécharge"""
+
+    # Récupération de l'URL
+    url = request.form["url"]
+
+    # Rendu de la vue
+    """ TODO : ajuster les noms en fonction de la template
+    et traiter l'URL avec l'objet de pytube.py """
+    return render_template("index.html", video="oui")
+
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 
 # Lancement du serveur
