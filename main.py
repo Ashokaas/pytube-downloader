@@ -2,7 +2,7 @@
 """
 
 # Librairie(s) utilisée(s)
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 # Création des objets Flask et Bdd
