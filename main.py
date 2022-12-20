@@ -2,7 +2,7 @@
 """
 
 # Librairie(s) utilisée(s)
-from flask import *
+from flask import Flask, render_template
 
 
 # Création des objets Flask et Bdd
@@ -13,12 +13,11 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 @app.route("/")
 def accueillir():
     """Gère l'accueil des utilisateurs"""
-    
+
     # Rendu de la vue
-    return render_template("accueil.html")
+    return render_template("index.html")
 
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
-
 
 # Lancement du serveur
 if __name__ == "__main__":
