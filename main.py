@@ -3,6 +3,7 @@
 
 # Librairie(s) utilisée(s)
 from flask import Flask, render_template, request
+import video_utils
 
 
 # Création des objets Flask et Bdd
@@ -11,18 +12,19 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 
 # Les routes associées aux fonctions
 @app.route("/")
-def accueillir():
+def accueillir() -> None:
     """Gère l'accueil des utilisateurs"""
 
     # Rendu de la vue
     return render_template("index.html")
 
 @app.route("/convert")
-def convert():
+def convert() -> None:
     """Récupère l'URL entrée par l'utilisateur et la télécharge"""
 
     # Récupération de l'URL
     link = request.form["link"]
+    link = video_utils.Link(link=link)
 
     # Rendu de la vue
     """ TODO : ajuster les noms en fonction de la template

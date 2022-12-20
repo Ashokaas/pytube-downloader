@@ -1,12 +1,14 @@
 import requests
+from urllib.request import urlretrieve
 
 
 class Link:
-    def __init__(self, link) -> None:
+    """Gère et transforme les liens"""
+    def __init__(self, link: str) -> None:
         self.link = self.reduce_link(link)
 
 
-    def reduce_link(self, link:str) -> str:
+    def reduce_link(self, link: str) -> str:
         """Réduit le lien de la vidéo
 
         Args:
@@ -25,12 +27,12 @@ class Link:
         return link
     
     
-    def get_link(self):
+    def get_link(self) -> str:
         """Renvoie le lien de la vidéo"""
         return self.link
     
     
-    def get_likes_and_dislikes(self):
+    def get_likes_and_dislikes(self) -> dict:
         """Récupère les likes et dislikes de la vidéo
 
         Returns:
@@ -40,8 +42,12 @@ class Link:
         response = requests.get(request_link)
         
         return response.json()
-        
-        
+    
+
+    def get_miniature(self) -> None:
+        """Téléchargement de la miniature avec la meilleure qualité possible"""
+        urlretrieve(f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg', "file")
+
 
 if __name__ == "__main__":
     link = Link("https://www.youtube.com/watch?v=6ZfuNTqbHE8")
