@@ -7,13 +7,13 @@
 
     <title>Pytube-downloader</title>
     
-    <link rel="stylesheet" href="static/css/download.css">
-    <link rel="stylesheet" href="static/css/assets.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/download.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assets.css') }}">
 </head>
 <body>
 
     <div id="download_form">
-        <form action="/convert">
+        <form action="{{ url_for('convert') }}" method="POST">
             <div id="download_link">
                 <div class="input_box">
                     <input type="text" name="link" required>
@@ -27,7 +27,19 @@
             </div>
 
         </form>
+
     </div>
+
+
+    <div id="convert">
+        
+        <h2 id="video_title">Titre de la vidéo</h2>
+
+        <img src="{{ url_for('static', filename='assets/thumbnail_unavailable.png') }}" alt="video">
+        <p>Ratio like dislike</p>
+        
+    </div>
+    
 
 </body>
 </html>
