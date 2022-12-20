@@ -17,12 +17,12 @@ def accueillir():
     # Rendu de la vue
     return render_template("index.html")
 
-@app.route("/download")
-def download():
+@app.route("/convert")
+def convert():
     """Récupère l'URL entrée par l'utilisateur et la télécharge"""
 
     # Récupération de l'URL
-    url = request.form["url"]
+    link = request.form["link"]
 
     # Rendu de la vue
     """ TODO : ajuster les noms en fonction de la template
