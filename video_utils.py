@@ -1,5 +1,8 @@
 """File managing links"""
 import requests
+from urllib.request import urlretrieve
+import subprocess
+from moviepy.config import get_setting
 
 
 class VideoData:
@@ -44,6 +47,22 @@ class VideoData:
     def get_miniature(self) -> None:
         """Miniature's download with maximum available resolution"""
         return f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg'
+
+
+def fuse_video_audio(video, audio, output, vcodec='copy', acodec='copy'):
+    """
+    Fuses a video and audio file into one video file.
+
+    Parameters:
+        video (str): Path to the video file
+        audio (str): Path to the audio file
+        output (str): Path to the output file
+        vcodec (str): ignore that
+        acodec (str): unless you know what you are doing
+    """
+    cmd = [get_setting("FFMPEG_BINARY"), "-y", "-i", audio, "-i", video, "-vcodec", vcodec, "-acodec", acodec, output]
+    subprocess.call(cmd)
+    return output
 
 
 if __name__ == "__main__":
