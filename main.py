@@ -21,23 +21,25 @@ def welcome() -> None:
     # Returning web site with keywards
     return render_template("index.html")
 
-@app.route("/convert")
+@app.route("/convert", methods=["POST"])
 def convert() -> None:
     """Get URL from user then ask for parameters"""
 
     # Getting URL
     link = request.form["link"]
     data = video_utils.VideoData(link=link)
-    downloader = ytvideo.YTVideo(data.get_link)
+    downloader = ytvideo.YTVideo(str(data.get_link))
 
     # Getting audios and videos qualities
     choice = {"audio": downloader.get_audio_qualities,
     }
-    choice["audio"] = downloader.get_audio_qualities()
-    choice["video"] = downloader.get_video_qualities()
+    choice["audio"] = {"mp4": downloader.get_audio_qualities("mp4"),
+     "webm": downloader.get_audio_qualities("webm")}
+    choice["video"] = {"mp4": downloader.get_video_qualities("mp4"),
+     "webm": downloader.get_video_qualities("webm")}
 
     # Returning web site with keywards
-    return render_template("index.html", video=data, audio_choice=choice["audio"], video_choice=["video"])
+    return render_template("index.html", video=data.get_link())
 
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 

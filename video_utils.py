@@ -1,6 +1,5 @@
 """File managing links"""
 import requests
-from urllib.request import urlretrieve
 import subprocess
 from moviepy.config import get_setting
 
