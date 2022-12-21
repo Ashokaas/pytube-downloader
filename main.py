@@ -19,7 +19,7 @@ def welcome() -> None:
     """Welcome user"""
 
     # Returning web site with keywards
-    return render_template("index.html")
+    return render_template("index.html", datas=None)
 
 @app.route("/convert", methods=["POST"])
 def convert() -> None:
