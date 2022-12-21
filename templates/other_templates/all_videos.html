@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/other_templates/all_videos.css') }}">
+
+<div id="convert">
+        
+    <h2 id="video_title">{{ datas["title"] }}</h2>
+    
+    
+    <img src="{{ datas['miniature'] }}" alt="Miniature">
+
+    {% print(datas) %}
+    <table cellspacing="0">
+        <thead>
+            <td>Qualité</td>
+            <td>FPS</td>
+            <td>Format</td>
+            <td>Taille</td>
+            <td></td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>720p</td>
+                <td>30</td>
+                <td>mp4</td>
+                <td>1.5 Mo</td>
+                <td><input type="submit" value="⬇ Télécharger" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
