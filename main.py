@@ -28,7 +28,7 @@ def convert() -> None:
     # Getting URL
     link = request.form["link"]
     data = video_utils.VideoData(link=link)
-    downloader = ytvideo.YTVideo(str(data.get_link))
+    downloader = ytvideo.YTVideo(str(link))
 
     # Getting audios and videos qualities
     choice = {"audio": downloader.get_audio_qualities,
@@ -39,7 +39,7 @@ def convert() -> None:
      "webm": downloader.get_video_qualities("webm")}
 
     # Returning web site with keywards
-    return render_template("index.html", video=data.get_link())
+    return render_template("index.html", video=link, title = downloader.get_title())
 
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 

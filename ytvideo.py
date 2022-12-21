@@ -61,19 +61,25 @@ class YTVideo:
                                 destination_folder + self.video_object.title.replace(" ", "_") + "_final." + file_type)
         return self.final
 
-    def get_video_qualities(self, file_type: str):
+    def get_video_qualities(self, file_type: str) -> list:
         """
         Get available video qualities for the file_type extension (webm or mp4)
         """
         return list(self.video_qualities[file_type].keys())
 
-    def get_audio_qualities(self, file_type: str):
+    def get_audio_qualities(self, file_type: str) -> list:
         """
         Get available audio qualities for the file_type extension (webm or mp4)
         """
         return list(self.audio_qualities[file_type].keys())
 
-    def __del__(self):
+    def get_title(self) -> str:
+        """
+        Get video's title 
+        """
+        return self.video_object.title
+
+    def __del__(self) -> None:
         os.remove(self.video)
         os.remove(self.audio)
 
