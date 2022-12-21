@@ -73,7 +73,7 @@
 }
 
 
-input[type="submit"] {
+.button1 {
     border: none;
     box-shadow: none;
     padding: 10px 25px;
@@ -85,6 +85,6 @@ input[type="submit"] {
     margin-top: 60px;
 }
 
-input[type="submit"]:hover {
+.button1:hover {
     background: #00BCD4;
 }
