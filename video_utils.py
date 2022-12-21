@@ -43,7 +43,7 @@ class VideoData:
         
         return response.json()
 
-    def get_miniature(self) -> None:
+    def get_miniature(self) -> str:
         """Miniature's download with maximum available resolution"""
         return f'http://img.youtube.com/vi/{self.link}/maxresdefault.jpg'
 

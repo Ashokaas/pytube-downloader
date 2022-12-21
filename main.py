@@ -25,10 +25,16 @@ def welcome() -> None:
 def convert() -> None:
     """Get URL from user then ask for parameters"""
 
+    # Dictionary containing all the needed datas
+    datas = {}
+
     # Getting URL
     link = request.form["link"]
     data = video_utils.VideoData(link=link)
     downloader = ytvideo.YTVideo(str(link))
+
+    datas["title"] = downloader.get_title()
+    datas["miniature"] = data.get_miniature()
 
     # Getting audios and videos qualities
     choice = {"audio": downloader.get_audio_qualities,
@@ -37,9 +43,12 @@ def convert() -> None:
      "webm": downloader.get_audio_qualities("webm")}
     choice["video"] = {"mp4": downloader.get_video_qualities("mp4"),
      "webm": downloader.get_video_qualities("webm")}
+    
+    datas["choice"] = choice
+
 
     # Returning web site with keywards
-    return render_template("index.html", video=link, title = downloader.get_title())
+    return render_template("index.html", datas=datas)
 
 # TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 
