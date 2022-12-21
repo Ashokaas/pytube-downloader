@@ -1,3 +1,7 @@
+:root {
+    --facteur_agrandissement_img: 12;
+}
+
 
 #convert {
     display: flex;
@@ -8,8 +12,8 @@
 }
 
 #convert img {
-    width: calc(16px*var(--facteur_agrandissement_img));
-    height: calc(9px*var(--facteur_agrandissement_img));
+    width: calc(16px*var(--facteur_agrandissement_img)) !important;
+    height: calc(9px*var(--facteur_agrandissement_img)) !important;
 }
 
 #convert table {

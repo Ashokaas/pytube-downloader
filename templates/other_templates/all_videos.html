@@ -1,10 +1,13 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/other_templates/all_videos.css') }}">
+
 <div id="convert">
         
-    <h2 id="video_title">Titre de la vidéo</h2>
+    <h2 id="video_title">{{ datas["title"] }}</h2>
     
     
-    <img src="{{ url_for('static', filename='assets/thumbnail_unavailable.png') }}" alt="video">
-    
+    <img src="{{ datas['miniature'] }}" alt="Miniature">
+
+    {% print(datas) %}
     <table cellspacing="0">
         <thead>
             <td>Qualité</td>
