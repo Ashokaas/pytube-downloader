@@ -33,24 +33,22 @@ def convert() -> None:
     data = video_utils.VideoData(link=link)
     downloader = ytvideo.YTVideo(str(link))
 
+    # Adding video's title and miniature
     datas["title"] = downloader.get_title()
     datas["miniature"] = data.get_miniature()
 
     # Getting audios and videos qualities
-    choice = {"audio": downloader.get_audio_qualities,
-    }
+    choice = {}
     choice["audio"] = {"mp4": downloader.get_audio_qualities("mp4"),
      "webm": downloader.get_audio_qualities("webm")}
     choice["video"] = {"mp4": downloader.get_video_qualities("mp4"),
      "webm": downloader.get_video_qualities("webm")}
-    
-    datas["choice"] = choice
 
+    # Adding video's qualities choice
+    datas["choice"] = choice
 
     # Returning web site with keywards
     return render_template("index.html", datas=datas)
-
-# TODO : ajoutez de nouvelles routes associées à des fonctions "contrôleur" Python
 
 # Launching server
 if __name__ == "__main__":
